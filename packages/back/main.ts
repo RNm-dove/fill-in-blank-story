@@ -18,6 +18,10 @@ type InputData = {
 	place1: string;
 };
 
+/**
+ * OpenAPIのchat apiを叩くコード。マッドリブようの文字列データを生成してもらう。
+ * @returns
+ */
 async function interactWithChatGPT(): Promise<string> {
 	const endpoint = 'https://api.openai.com/v1/chat/completions';
 	const apiKey = process.env.CHAT_GPT_SECRET_KEY; // ChatGPT APIキーを入力してください
@@ -27,7 +31,7 @@ async function interactWithChatGPT(): Promise<string> {
 		'Content-Type': 'application/json',
 	};
 
-	const requestMessage = `Create comical mad-lib story in Japanese in about 300 characters
+	const requestMessage = `Create parodies of famous story to create  mad-lib story in Japanese in about 300 characters
 	. Use: "<noun1>","<noun2>","<verb1>て","<adjective1>な","<adverb1>に","<place1>"`;
 	console.debug('requestMessage', requestMessage);
 
@@ -53,6 +57,11 @@ async function interactWithChatGPT(): Promise<string> {
 	}
 }
 
+/**
+ * OpenAPIの画像生成APIを叩くコード。ユーザーが入力したデータをもとに、適当な画像を生成してもらう。
+ * @param input
+ * @returns
+ */
 async function createImage(input: InputData) {
 	const endpoint = 'https://api.openai.com/v1/images/generations';
 	const apiKey = process.env.CHAT_GPT_SECRET_KEY; // ChatGPT APIキーを入力してください
@@ -82,6 +91,9 @@ async function createImage(input: InputData) {
 	}
 }
 
+/**
+ * POST: localhost:3000/chat で叩かれる想定。入力された文字列を、OpenAPIのAIが作成した文章に注入し、また画像を生成して、返す。
+ */
 app.post('/chat', async (req: Request, res: Response) => {
 	const userWord: InputData = req.body.word;
 	console.debug(userWord);

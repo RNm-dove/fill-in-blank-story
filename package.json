@@ -1,0 +1,18 @@
+{
+	"name": "fill-in-blank-story",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"video": "pnpm -F \"video\"",
+		"front": "pnpm -F \"front\"",
+		"back": "pnpm -F \"back\""
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"prettier": "^2.8.1"
+	}
+}
